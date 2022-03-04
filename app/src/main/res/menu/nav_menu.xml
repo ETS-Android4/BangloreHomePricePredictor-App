@@ -3,22 +3,23 @@
 
         <group android:checkableBehavior="single">
 
-            <item android:title="Home">
+            <item android:title="@string/home_option">
 
                 <menu>
 
                     <item android:id="@+id/predictor"
-                        android:title="Predictor">
+                        android:title="@string/predictor_option">
 
                     </item>
 
                     <item android:id="@+id/saved_prediction"
-                        android:title="Saved Predictions">
+                        android:title="@string/saved_predictions_option">
 
                     </item>
 
-                    <item android:id="@+id/about_app"
-                        android:title="About App"></item>
+                    <item
+                        android:id="@+id/about_app"
+                        android:title="@string/about_app_option" />
 
                 </menu>
 
@@ -28,22 +29,22 @@
 
     <group android:checkableBehavior="single">
 
-        <item android:title="Profile">
+        <item android:title="@string/profile_option">
 
             <menu>
 
                 <item android:id="@+id/logout"
-                    android:title="Logout">
+                    android:title="@string/logout_option">
 
                 </item>
 
                 <item android:id="@+id/delete_account"
-                    android:title="Delete Account">
+                    android:title="@string/delete_account_option">
 
                 </item>
 
                 <item android:id="@+id/change_password"
-                    android:title="Change Password">
+                    android:title="@string/change_password_option">
 
                 </item>
 
