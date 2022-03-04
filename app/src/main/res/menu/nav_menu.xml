@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <group android:checkableBehavior="single">
+
+            <item android:title="Home">
+
+                <menu>
+
+                    <item android:id="@+id/predictor"
+                        android:title="Predictor">
+
+                    </item>
+
+                    <item android:id="@+id/saved_prediction"
+                        android:title="Saved Predictions">
+
+                    </item>
+
+                    <item android:id="@+id/about_app"
+                        android:title="About App"></item>
+
+                </menu>
+
+            </item>
+
+        </group>
+
+    <group android:checkableBehavior="single">
+
+        <item android:title="Profile">
+
+            <menu>
+
+                <item android:id="@+id/logout"
+                    android:title="Logout">
+
+                </item>
+
+                <item android:id="@+id/delete_account"
+                    android:title="Delete Account">
+
+                </item>
+
+                <item android:id="@+id/change_password"
+                    android:title="Change Password">
+
+                </item>
+
+
+            </menu>
+
+        </item>
+
+    </group>
+
+</menu>
