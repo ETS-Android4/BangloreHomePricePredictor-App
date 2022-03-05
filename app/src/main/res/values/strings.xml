@@ -8,4 +8,6 @@
     <string name="logout_option">Logout</string>
     <string name="delete_account_option">Delete Account</string>
     <string name="change_password_option">Change Password</string>
+    <string name="open">open</string>
+    <string name="close">open</string>
 </resources>
