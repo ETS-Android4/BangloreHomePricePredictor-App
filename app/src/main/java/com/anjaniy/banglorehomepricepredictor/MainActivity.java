@@ -7,6 +7,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import android.os.Bundle;
+
+import com.anjaniy.banglorehomepricepredictor.fragments.Predictor;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +24,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         widgetSetup();
+
+        //WILL GET MESSAGE FRAGMENT AS DEFAULT FRAGMENT.
+        if(savedInstanceState == null){
+            main_toolbar.setTitle("Predictor");
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Predictor()).commit();
+            navigationView.setCheckedItem(R.id.predictor);
+        }
     }
 
     private void widgetSetup() {
