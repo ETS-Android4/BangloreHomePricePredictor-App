@@ -1,5 +1,6 @@
 package com.anjaniy.banglorehomepricepredictor;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,8 +8,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import android.os.Bundle;
+import android.view.MenuItem;
 
+import com.anjaniy.banglorehomepricepredictor.fragments.About_App;
 import com.anjaniy.banglorehomepricepredictor.fragments.Predictor;
+import com.anjaniy.banglorehomepricepredictor.fragments.Saved_Predictions;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +35,32 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Predictor()).commit();
             navigationView.setCheckedItem(R.id.predictor);
         }
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+
+                    case R.id.predictor:
+                        main_toolbar.setTitle("Predictor");
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Predictor()).commit();
+                        break;
+
+                    case R.id.saved_prediction:
+                        main_toolbar.setTitle("Saved Predictions");
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Saved_Predictions()).commit();
+                        break;
+
+                    case R.id.about_app:
+                        main_toolbar.setTitle("About App");
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new About_App()).commit();
+                        break;
+
+                }
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
     }
 
     private void widgetSetup() {

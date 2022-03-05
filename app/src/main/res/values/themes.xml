@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.BangloreHomePricePredictor" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.BangloreHomePricePredictor" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary_first</item>
         <item name="colorPrimaryVariant">@color/primary_second</item>
