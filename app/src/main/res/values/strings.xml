@@ -11,4 +11,5 @@
     <string name="open">open</string>
     <string name="close">open</string>
     <string name="loading_dialog">Loading.....</string>
+    <string name="about_app">Banglore Home Price Predictor Is A Machine Learning Model, Which Predicts The Housing Prices Based On Location, Size, No.of Baths and Balconies, and Square-Foot-Area.</string>
 </resources>
