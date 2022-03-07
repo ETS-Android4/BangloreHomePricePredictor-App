@@ -2,36 +2,176 @@ package com.anjaniy.banglorehomepricepredictor.fragments;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.anjaniy.banglorehomepricepredictor.R;
+import com.anjaniy.banglorehomepricepredictor.singleton.MySingleTon;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Predictor extends Fragment {
 
+    private EditText sqft;
+    private Spinner bhk;
+    private Spinner bath;
+    private Spinner balcony;
+    private Spinner locations;
     private Button estimatePrice;
+
+    private String[] BHK_Array = new String[8];
+    private String[] BATH_Array = new String[8];
+    private String[] BALCONY_Array = new String[8];
+    private String[] LOCATION_Names = new String[229];
+
+    private String sqftSelected = "";
+    private String bhkSelected = "";
+    private String bathSelected = "";
+    private String  balconySelected = "";
+    private String locationSelected = "";
+
     private View view;
     private ProgressDialog dialog;
+
+    private final String LOCATIONS_URL = "https://bhpp-anjaniy.herokuapp.com/get_location_names";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = (inflater.inflate(R.layout.fragment_predictor,container,false));
         widgetSetup();
+        spinnerSetup();
+        getLocations();
+
+        bhk.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                bhkSelected = parent.getItemAtPosition(position).toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        bath.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                bathSelected = parent.getItemAtPosition(position).toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        balcony.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                balconySelected = parent.getItemAtPosition(position).toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        locations.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                locationSelected = parent.getItemAtPosition(position).toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         estimatePrice.setOnClickListener(v -> {
             showProgressDialog();
+            Toast.makeText(getActivity(), bhkSelected + " " + bathSelected + " " + balconySelected + " " + locationSelected + " " + sqftSelected, Toast.LENGTH_LONG).show();
         });
         return view;
     }
 
+    private void getLocations() {
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, LOCATIONS_URL, null, response -> {
+
+            try {
+
+                JSONArray jsonArray = response.getJSONArray("locations");
+                int length = jsonArray.length();
+                for(int i = 0 ; i < length ; i++){
+                    LOCATION_Names[i] = jsonArray.getString(i).toUpperCase();
+
+                    ArrayAdapter<String> spinnerArrayAdapter_LOCATIONS = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, LOCATION_Names);
+                    spinnerArrayAdapter_LOCATIONS.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+                    locations.setAdapter(spinnerArrayAdapter_LOCATIONS);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }, error -> Log.d("tag", "onErrorResponse: " + error.getMessage()));
+
+        MySingleTon.getInstance(getActivity()).addToRequestQueue(jsonObjectRequest);
+    }
+
+    private void spinnerSetup() {
+        BHK_Array = getResources().getStringArray(R.array.bhk_array);
+        BATH_Array =  getResources().getStringArray(R.array.bath_array);
+        BALCONY_Array = getResources().getStringArray(R.array.balcony_array);
+
+        ArrayAdapter<String> spinnerArrayAdapter_BHK = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, BHK_Array);
+        spinnerArrayAdapter_BHK.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+        bhk.setAdapter(spinnerArrayAdapter_BHK);
+
+        ArrayAdapter<String> spinnerArrayAdapter_BATH = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, BATH_Array);
+        spinnerArrayAdapter_BATH.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+        bath.setAdapter(spinnerArrayAdapter_BATH);
+
+        ArrayAdapter<String> spinnerArrayAdapter_BALCONY = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, BALCONY_Array);
+        spinnerArrayAdapter_BALCONY.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+        balcony.setAdapter(spinnerArrayAdapter_BALCONY);
+    }
+
     private void widgetSetup() {
+        sqft = (EditText)view.findViewById(R.id.sqft);
+        bhk = (Spinner)view.findViewById(R.id.bhk);
+        bath = (Spinner)view.findViewById(R.id.bath);
+        balcony = (Spinner)view.findViewById(R.id.balcony);
+        locations = (Spinner)view.findViewById(R.id.location_names);
         estimatePrice = view.findViewById(R.id.estimate_price_btn);
     }
 
