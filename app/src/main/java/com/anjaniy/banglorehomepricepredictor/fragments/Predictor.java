@@ -60,8 +60,8 @@ public class Predictor extends Fragment {
 
     private String Result = "";
 
-    private final String LOCATIONS_URL = "https://bhpp-anjaniy.herokuapp.com/get_location_names";
-    private final String ESTIMATE_PRICE_URL = "https://bhpp-anjaniy.herokuapp.com/predict_home_price";
+    private final String LOCATIONS_URL = "https://bhpp-backend.herokuapp.com/get_location_names";
+    private final String ESTIMATE_PRICE_URL = "https://bhpp-backend.herokuapp.com/predict_home_price";
 
     @Nullable
     @Override
@@ -207,11 +207,11 @@ public class Predictor extends Fragment {
     }
 
     private void widgetSetup() {
-        sqft = (EditText)view.findViewById(R.id.sqft);
-        bhk = (Spinner)view.findViewById(R.id.bhk);
-        bath = (Spinner)view.findViewById(R.id.bath);
-        balcony = (Spinner)view.findViewById(R.id.balcony);
-        locations = (Spinner)view.findViewById(R.id.location_names);
+        sqft = view.findViewById(R.id.sqft);
+        bhk = view.findViewById(R.id.bhk);
+        bath = view.findViewById(R.id.bath);
+        balcony = view.findViewById(R.id.balcony);
+        locations = view.findViewById(R.id.location_names);
         estimatePrice = view.findViewById(R.id.estimate_price_btn);
     }
 
@@ -244,23 +244,9 @@ public class Predictor extends Fragment {
                     .setCancelable(false)
 
                     //CODE FOR POSITIVE(YES) BUTTON: -
-                    .setPositiveButton("Save Prediction", new DialogInterface.OnClickListener() {
+                    .setPositiveButton("Save Prediction", (dialog, which) -> {
+                        //ACTION FOR "YES" BUTTON: -
 
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            //ACTION FOR "YES" BUTTON: -
-//                            String email_id = current_user.Get_User_Info(1);
-//                            boolean flag = database.Insert_Data(sqft_selected,bhk_selected,bath_selected,balcony_selected,location_selected,Result);
-//
-//                            if(flag == true){
-//                                Toast.makeText(getActivity(), "Successfully Saved!", Toast.LENGTH_LONG).show();
-//                            }
-//
-//                            else{
-//                                Toast.makeText(getActivity(), "Unable To Save!", Toast.LENGTH_LONG).show();
-//                            }
-
-                        }
                     })
 
                     //CODE FOR NEGATIVE(NO) BUTTON: -

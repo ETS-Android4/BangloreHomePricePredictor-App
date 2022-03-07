@@ -14,6 +14,19 @@
     <string name="about_app">Banglore Home Price Predictor Is A Machine Learning Model, Which Predicts The Housing Prices Based On Location, Size, No.of Baths and Balconies, and Square-Foot-Area.
 
     </string>
+    <string name="square_foot_area">Square Foot Area:</string>
+    <string name="square_foot_area_edit_text">Square Foot Area</string>
+    <string name="location">Location:</string>
+    <string name="bhk">BHK:</string>
+    <string name="bath">Bath:</string>
+    <string name="balcony">Balcony:</string>
+    <string name="estimate_price">Estimate Price</string>
+    <string name="id">ID:</string>
+    <string name="sqft_area_saved">Sqft Area:</string>
+    <string name="bhk_saved">BHK:</string>
+    <string name="location_saved">Location:</string>
+    <string name="baths_saved">Baths:</string>
+    <string name="balconies_saved">Balconies:</string>
 
     <string-array name="bhk_array">
         <item>1</item>

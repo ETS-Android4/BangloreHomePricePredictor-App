@@ -4,135 +4,146 @@
     android:layout_height="match_parent"
     android:padding="8dp">
 
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="8dp">
+        android:layout_height="match_parent">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Square Foot Area:"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:fontFamily="sans-serif-condensed-medium">
-        </TextView>
+            android:orientation="vertical">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/sqft"
-            android:hint="Square Foot Area"
-            android:background="@drawable/textbox"
-            android:textSize="18sp"
-            android:layout_margin="8dp"
-            android:padding="12dp"
-            android:textColor="@color/black"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:inputType="number">
-        </EditText>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="8dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Location:"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:fontFamily="sans-serif-condensed-medium">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/square_foot_area"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:fontFamily="sans-serif-condensed-medium">
+                </TextView>
 
-        </TextView>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sqft"
+                    android:hint="@string/square_foot_area_edit_text"
+                    android:background="@drawable/textbox"
+                    android:textSize="18sp"
+                    android:layout_margin="8dp"
+                    android:padding="12dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:inputType="number">
+                </EditText>
 
-        <Spinner
-            android:id="@+id/location_names"
-            android:layout_margin="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:spinnerMode="dialog"
-            android:background="@android:drawable/btn_dropdown">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/location"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:fontFamily="sans-serif-condensed-medium">
 
-        </Spinner>
+                </TextView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="BHK:"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:fontFamily="sans-serif-condensed-medium">
+                <Spinner
+                    android:id="@+id/location_names"
+                    android:layout_margin="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog"
+                    android:background="@android:drawable/btn_dropdown">
 
-        </TextView>
+                </Spinner>
 
-        <Spinner
-            android:id="@+id/bhk"
-            android:layout_margin="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:spinnerMode="dialog"
-            android:background="@android:drawable/btn_dropdown">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bhk"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:fontFamily="sans-serif-condensed-medium">
 
-        </Spinner>
+                </TextView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Bath:"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:fontFamily="sans-serif-condensed-medium">
+                <Spinner
+                    android:id="@+id/bhk"
+                    android:layout_margin="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog"
+                    android:background="@android:drawable/btn_dropdown">
 
-        </TextView>
+                </Spinner>
 
-        <Spinner
-            android:id="@+id/bath"
-            android:layout_margin="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:spinnerMode="dialog"
-            android:background="@android:drawable/btn_dropdown">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bath"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:fontFamily="sans-serif-condensed-medium">
 
-        </Spinner>
+                </TextView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Balcony:"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:fontFamily="sans-serif-condensed-medium">
+                <Spinner
+                    android:id="@+id/bath"
+                    android:layout_margin="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog"
+                    android:background="@android:drawable/btn_dropdown">
 
-        </TextView>
+                </Spinner>
 
-        <Spinner
-            android:id="@+id/balcony"
-            android:layout_margin="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:spinnerMode="dialog"
-            android:background="@android:drawable/btn_dropdown">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/balcony"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:fontFamily="sans-serif-condensed-medium">
 
-        </Spinner>
+                </TextView>
+
+                <Spinner
+                    android:id="@+id/balcony"
+                    android:layout_margin="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog"
+                    android:background="@android:drawable/btn_dropdown">
+
+                </Spinner>
 
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:textColor="@color/black"
-            android:text="Estimate Price"
-            android:background="@drawable/button_style"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:id="@+id/estimate_price_btn"
-            android:textSize="18sp">
-        </Button>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:textColor="@color/black"
+                    android:text="@string/estimate_price"
+                    android:background="@drawable/button_style"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:id="@+id/estimate_price_btn"
+                    android:textSize="18sp">
+                </Button>
 
-    </LinearLayout>
-
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -23,7 +23,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="100"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -38,7 +39,7 @@
                     android:layout_margin="8dp"
                     android:id="@+id/id_saved_prediction"
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:text="ID:">
+                    android:text="@string/id">
                 </TextView>
 
                 <TextView
@@ -48,7 +49,7 @@
                     android:layout_margin="8dp"
                     android:id="@+id/sqft_saved_prediction"
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:text="Sqft Area:">
+                    android:text="@string/sqft_area_saved">
 
                 </TextView>
 
@@ -59,7 +60,7 @@
                     android:layout_margin="8dp"
                     android:id="@+id/bhk_saved_prediction"
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:text="BHK:">
+                    android:text="@string/bhk_saved">
 
                 </TextView>
 
@@ -80,7 +81,7 @@
                     android:layout_marginBottom="8dp"
                     android:id="@+id/location_saved_prediction"
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:text="Location:">
+                    android:text="@string/location_saved">
 
                 </TextView>
 
@@ -93,7 +94,7 @@
                     android:layout_marginBottom="8dp"
                     android:id="@+id/bath_saved_prediction"
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:text="Baths:">
+                    android:text="@string/baths_saved">
 
                 </TextView>
 
@@ -104,7 +105,7 @@
                     android:layout_margin="8dp"
                     android:id="@+id/balcony_saved_prediction"
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:text="Balconies:">
+                    android:text="@string/balconies_saved">
 
                 </TextView>
 
