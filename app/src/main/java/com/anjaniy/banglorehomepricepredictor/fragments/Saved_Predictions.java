@@ -17,6 +17,7 @@ public class Saved_Predictions extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = (inflater.inflate(R.layout.fragment_saved_predictions,container,false));
+
         return view;
     }
 }
