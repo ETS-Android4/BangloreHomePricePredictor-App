@@ -1,6 +1,7 @@
 package com.anjaniy.banglorehomepricepredictor.fragments;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,18 +16,24 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.anjaniy.banglorehomepricepredictor.R;
 import com.anjaniy.banglorehomepricepredictor.singleton.MySingleTon;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class Predictor extends Fragment {
 
@@ -51,7 +58,10 @@ public class Predictor extends Fragment {
     private View view;
     private ProgressDialog dialog;
 
+    private String Result = "";
+
     private final String LOCATIONS_URL = "https://bhpp-anjaniy.herokuapp.com/get_location_names";
+    private final String ESTIMATE_PRICE_URL = "https://bhpp-anjaniy.herokuapp.com/predict_home_price";
 
     @Nullable
     @Override
@@ -119,7 +129,37 @@ public class Predictor extends Fragment {
 
         estimatePrice.setOnClickListener(v -> {
             showProgressDialog();
-            Toast.makeText(getActivity(), bhkSelected + " " + bathSelected + " " + balconySelected + " " + locationSelected + " " + sqftSelected, Toast.LENGTH_LONG).show();
+            sqftSelected = sqft.getText().toString().trim();
+
+            if(sqftSelected.isEmpty()){
+                sqft.setError("Square Foot Area Is Required!");
+                sqft.requestFocus();
+                dismissDialog();
+                return;
+            }
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, ESTIMATE_PRICE_URL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+
+                    parseResponse(response);
+
+                }
+            }, error -> Log.d("tag", "onErrorResponse: " + error.getMessage())){
+
+                @Override
+                protected Map<String,String> getParams(){
+                    Map<String,String> params = new HashMap<>();
+                    params.put("total_sqft",sqftSelected);
+                    params.put("location",locationSelected);
+                    params.put("bhk",bhkSelected);
+                    params.put("bath",bathSelected);
+                    params.put("balcony",balconySelected);
+
+                    return params;
+                }
+            };
+            MySingleTon.getInstance(getActivity()).addToRequestQueue(stringRequest);
         });
         return view;
     }
@@ -185,5 +225,60 @@ public class Predictor extends Fragment {
 
     public void dismissDialog() {
         dialog.dismiss();
+    }
+
+    private void parseResponse(String response){
+
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+
+            Result = jsonObject.getString("estimated_price");
+
+            dismissDialog();
+
+            AlertDialog.Builder builder;
+            builder = new AlertDialog.Builder(requireActivity());
+
+            builder.setMessage(Result + " " + "Lakhs")
+
+                    .setCancelable(false)
+
+                    //CODE FOR POSITIVE(YES) BUTTON: -
+                    .setPositiveButton("Save Prediction", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //ACTION FOR "YES" BUTTON: -
+//                            String email_id = current_user.Get_User_Info(1);
+//                            boolean flag = database.Insert_Data(sqft_selected,bhk_selected,bath_selected,balcony_selected,location_selected,Result);
+//
+//                            if(flag == true){
+//                                Toast.makeText(getActivity(), "Successfully Saved!", Toast.LENGTH_LONG).show();
+//                            }
+//
+//                            else{
+//                                Toast.makeText(getActivity(), "Unable To Save!", Toast.LENGTH_LONG).show();
+//                            }
+
+                        }
+                    })
+
+                    //CODE FOR NEGATIVE(NO) BUTTON: -
+                    .setNegativeButton("Ok", (dialog, which) -> {
+                        //ACTION FOR "NO" BUTTON: -
+                        dialog.cancel();
+
+                    });
+
+            //CREATING A DIALOG-BOX: -
+            AlertDialog alertDialog = builder.create();
+            //SET TITLE MAUALLY: -
+            alertDialog.setTitle("Estimated Price");
+            alertDialog.show();
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 }
