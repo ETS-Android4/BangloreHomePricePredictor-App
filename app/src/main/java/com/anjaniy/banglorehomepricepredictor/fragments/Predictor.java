@@ -26,6 +26,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.anjaniy.banglorehomepricepredictor.R;
 import com.anjaniy.banglorehomepricepredictor.singleton.MySingleTon;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -237,7 +238,7 @@ public class Predictor extends Fragment {
             dismissDialog();
 
             AlertDialog.Builder builder;
-            builder = new AlertDialog.Builder(requireActivity());
+            builder = new AlertDialog.Builder(requireActivity(), R.style.AlertDialogStyle);
 
             builder.setMessage(Result + " " + "Lakhs")
 
@@ -262,9 +263,11 @@ public class Predictor extends Fragment {
             alertDialog.setTitle("Estimated Price");
             alertDialog.show();
 
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
 
     }
 }
