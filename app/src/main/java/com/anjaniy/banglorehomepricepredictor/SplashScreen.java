@@ -2,13 +2,17 @@ package com.anjaniy.banglorehomepricepredictor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
+@SuppressLint("CustomSplashScreen")
 public class SplashScreen extends AppCompatActivity {
 
     @Override
@@ -26,8 +30,14 @@ public class SplashScreen extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashScreen.this, LoginActivity.class));
-                finish();
+                //Check if User Logged In:
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                if(auth.getCurrentUser() != null){
+                    startActivity(new Intent(SplashScreen.this, MainActivity.class));
+                }
+                else{
+                    startActivity(new Intent(SplashScreen.this, LoginActivity.class));
+                }
 
             }
         },2000);
