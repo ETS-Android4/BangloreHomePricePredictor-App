@@ -12,8 +12,18 @@
         android:roundIcon="@drawable/logowithouttext"
         android:supportsRtl="true"
         android:theme="@style/Theme.BangloreHomePricePredictor">
-        <activity android:name=".SplashScreen"
-            android:exported="true">
+        <activity
+            android:name=".SignupActivity"
+            android:exported="false"
+            android:label="Create New Account"/>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:label="Login"/>
+        <activity
+            android:name=".SplashScreen"
+            android:exported="true"
+            android:theme="@style/Theme.BangloreHomePricePredictor.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,8 +32,8 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"
+            android:theme="@style/Theme.BangloreHomePricePredictor.NoActionBar" />
     </application>
 
 </manifest>

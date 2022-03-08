@@ -27,6 +27,12 @@
     <string name="location_saved">Location:</string>
     <string name="baths_saved">Baths:</string>
     <string name="balconies_saved">Balconies:</string>
+    <string name="emailHint">Email Address</string>
+    <string name="passwordHint">Password</string>
+    <string name="loginButton">Login</string>
+    <string name="createAccountButton">Create An Account</string>
+    <string name="signupbutton">Create An Account</string>
+    <string name="alreadyAccountButton">Already Have An Account ?</string>
 
     <string-array name="bhk_array">
         <item>1</item>
