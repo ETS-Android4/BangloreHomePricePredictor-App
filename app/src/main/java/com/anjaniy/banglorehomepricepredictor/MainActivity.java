@@ -1,6 +1,5 @@
 package com.anjaniy.banglorehomepricepredictor;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,13 +8,18 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.anjaniy.banglorehomepricepredictor.fragments.About_App;
 import com.anjaniy.banglorehomepricepredictor.fragments.Predictor;
 import com.anjaniy.banglorehomepricepredictor.fragments.Saved_Predictions;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private Toolbar main_toolbar;
     private Toolbar nav_toolbar;
+    private ProgressDialog dialog;
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -55,6 +60,79 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.about_app:
                     main_toolbar.setTitle("About App");
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new About_App()).commit();
+                    break;
+
+                case R.id.logout:
+                    AlertDialog.Builder builder_logout;
+                    builder_logout = new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogStyle);
+
+                    builder_logout.setMessage("Do you want to sign out??")
+
+                            .setCancelable(false)
+
+                            //CODE FOR POSITIVE(YES) BUTTON: -
+                            .setPositiveButton("Yes", (dialog, which) -> {
+                                //ACTION FOR "YES" BUTTON: -
+                                showProgressDialog();
+                                //ACTION FOR "YES" BUTTON: -
+                                FirebaseAuth.getInstance().signOut();
+                                Toast.makeText(MainActivity.this, "Sign out has been successfully", Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                                dismissDialog();
+                            })
+
+                            //CODE FOR NEGATIVE(NO) BUTTON: -
+                            .setNegativeButton("No", (dialog, which) -> {
+                                //ACTION FOR "NO" BUTTON: -
+                                dialog.cancel();
+
+                            });
+
+                    //CREATING A DIALOG-BOX: -
+                    AlertDialog alertDialog_signout = builder_logout.create();
+                    //SET TITLE MAUALLY: -
+                    alertDialog_signout.setTitle("Sign Out");
+                    alertDialog_signout.show();
+                    break;
+
+                case R.id.delete_account:
+                    Toast.makeText(MainActivity.this, "Account has been deleted successfully", Toast.LENGTH_LONG).show();
+                    break;
+
+                case R.id.forgot_password:
+                    AlertDialog.Builder builder_changePassword;
+                    builder_changePassword = new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogStyle);
+
+                    builder_changePassword.setMessage("Are you sure you forgot your password?")
+
+                            .setCancelable(false)
+
+                            //CODE FOR POSITIVE(YES) BUTTON: -
+                            .setPositiveButton("Yes", (dialog, which) -> {
+                                //ACTION FOR "YES" BUTTON: -
+                                showProgressDialog();
+                                //ACTION FOR "YES" BUTTON: -
+                                FirebaseAuth.getInstance().sendPasswordResetEmail(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail())).addOnSuccessListener(unused -> {
+                                    dismissDialog();
+                                    Toast.makeText(MainActivity.this, "Password reset link has been sent to your email.", Toast.LENGTH_LONG).show();
+                                }).addOnFailureListener(e -> {
+                                    dismissDialog();
+                                    Toast.makeText(MainActivity.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                                });
+                            })
+
+                            //CODE FOR NEGATIVE(NO) BUTTON: -
+                            .setNegativeButton("No", (dialog, which) -> {
+                                //ACTION FOR "NO" BUTTON: -
+                                dialog.cancel();
+
+                            });
+
+                    //CREATING A DIALOG-BOX: -
+                    AlertDialog alertDialog_changePassword = builder_changePassword.create();
+                    //SET TITLE MAUALLY: -
+                    alertDialog_changePassword.setTitle("Forgot password");
+                    alertDialog_changePassword.show();
                     break;
 
             }
@@ -117,5 +195,16 @@ public class MainActivity extends AppCompatActivity {
         //SET TITLE MAUALLY: -
         alertDialog.setTitle("Exit");
         alertDialog.show();
+    }
+
+    private void showProgressDialog() {
+        dialog = new ProgressDialog(MainActivity.this);
+        dialog.show();
+        dialog.setContentView(R.layout.progress_dialog);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+    }
+    public void dismissDialog() {
+        dialog.dismiss();
     }
 }

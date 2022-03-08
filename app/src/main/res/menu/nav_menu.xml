@@ -43,7 +43,7 @@
 
                 </item>
 
-                <item android:id="@+id/change_password"
+                <item android:id="@+id/forgot_password"
                     android:title="@string/change_password_option">
 
                 </item>

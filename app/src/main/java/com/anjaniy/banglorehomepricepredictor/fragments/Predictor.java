@@ -25,7 +25,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.anjaniy.banglorehomepricepredictor.R;
+import com.anjaniy.banglorehomepricepredictor.models.Prediction;
 import com.anjaniy.banglorehomepricepredictor.singleton.MySingleTon;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -255,6 +258,21 @@ public class Predictor extends Fragment {
                     //CODE FOR POSITIVE(YES) BUTTON: -
                     .setPositiveButton("Save Prediction", (dialog, which) -> {
                         //ACTION FOR "YES" BUTTON: -
+                        Prediction prediction = new Prediction();
+                        prediction.setPrice(Result + "Lakhs");
+                        prediction.setLocation(locationSelected);
+                        prediction.setBalcony(balconySelected);
+                        prediction.setSqft(sqftSelected);
+                        prediction.setBath(bathSelected);
+                        prediction.setBhk(bhkSelected);
+
+                        database
+                                .collection("Predictions")
+                                .document(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
+                                .collection(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser().getEmail()))
+                                .document()
+                                .set(prediction).addOnSuccessListener(unused -> Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show())
+                                .addOnFailureListener(e -> Toast.makeText(getActivity(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show());
 
                     })
 
