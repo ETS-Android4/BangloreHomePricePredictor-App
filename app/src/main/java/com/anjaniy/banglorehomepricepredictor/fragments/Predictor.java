@@ -27,6 +27,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.anjaniy.banglorehomepricepredictor.R;
 import com.anjaniy.banglorehomepricepredictor.singleton.MySingleTon;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,6 +65,9 @@ public class Predictor extends Fragment {
 
     private final String LOCATIONS_URL = "https://bhpp-backend.herokuapp.com/get_location_names";
     private final String ESTIMATE_PRICE_URL = "https://bhpp-backend.herokuapp.com/predict_home_price";
+
+    private FirebaseAuth auth;
+    private FirebaseFirestore database;
 
     @Nullable
     @Override
@@ -214,6 +219,9 @@ public class Predictor extends Fragment {
         balcony = view.findViewById(R.id.balcony);
         locations = view.findViewById(R.id.location_names);
         estimatePrice = view.findViewById(R.id.estimate_price_btn);
+
+        auth = FirebaseAuth.getInstance();
+        database = FirebaseFirestore.getInstance();
     }
 
     private void showProgressDialog() {

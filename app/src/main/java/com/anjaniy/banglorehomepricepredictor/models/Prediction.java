@@ -1,8 +1,7 @@
 package com.anjaniy.banglorehomepricepredictor.models;
 
-public class Saved_Predictions_Model_Class {
+public class Prediction {
 
-    private String id;
     private String sqft;
     private String bhk;
     private String bath;
@@ -10,34 +9,8 @@ public class Saved_Predictions_Model_Class {
     private String location;
     private String price;
 
-    public Saved_Predictions_Model_Class(){
+    public Prediction(){
 
-    }
-
-    public Saved_Predictions_Model_Class(String id,String sqft, String bhk, String bath, String balcony, String location, String price) {
-        this.id = id;
-        this.sqft = sqft;
-        this.bhk = bhk;
-        this.bath = bath;
-        this.balcony = balcony;
-        this.location = location;
-        this.price = price;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     public String getSqft() {
@@ -78,5 +51,13 @@ public class Saved_Predictions_Model_Class {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }

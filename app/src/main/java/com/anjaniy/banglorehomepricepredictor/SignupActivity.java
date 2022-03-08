@@ -36,8 +36,8 @@ public class SignupActivity extends AppCompatActivity {
 
 
         binding.signupbutton.setOnClickListener(v -> {
-            //Validations:
 
+            //Validations:
             if(binding.emailForSignup.getText().toString().isEmpty()){
                 binding.emailForSignup.setError("Enter your email address");
                 binding.emailForSignup.requestFocus();
