@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "406090324321",
+    "project_id": "bhpp-app",
+    "storage_bucket": "bhpp-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:406090324321:android:410b8ef3077295b987cd20",
+        "android_client_info": {
+          "package_name": "com.anjaniy.banglorehomepricepredictor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "406090324321-qoqksb8cbi1lhh82tk6qofcd5poiolof.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ0JC5R-w2RN5lFb_HMSswKuyT1Ft2v6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "406090324321-qoqksb8cbi1lhh82tk6qofcd5poiolof.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
