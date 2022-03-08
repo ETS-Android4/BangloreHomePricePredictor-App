@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar main_toolbar;
     private Toolbar nav_toolbar;
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,42 +39,39 @@ public class MainActivity extends AppCompatActivity {
             navigationView.setCheckedItem(R.id.predictor);
         }
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+        navigationView.setNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()){
 
-                    case R.id.predictor:
-                        main_toolbar.setTitle("Predictor");
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Predictor()).commit();
-                        break;
+                case R.id.predictor:
+                    main_toolbar.setTitle("Predictor");
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Predictor()).commit();
+                    break;
 
-                    case R.id.saved_prediction:
-                        main_toolbar.setTitle("Saved Predictions");
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Saved_Predictions()).commit();
-                        break;
+                case R.id.saved_prediction:
+                    main_toolbar.setTitle("Saved Predictions");
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Saved_Predictions()).commit();
+                    break;
 
-                    case R.id.about_app:
-                        main_toolbar.setTitle("About App");
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new About_App()).commit();
-                        break;
+                case R.id.about_app:
+                    main_toolbar.setTitle("About App");
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new About_App()).commit();
+                    break;
 
-                }
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return true;
             }
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return true;
         });
     }
 
     private void widgetSetup() {
         //CUSTOM - TOOLBAR: -
-        main_toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        main_toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(main_toolbar);
-        nav_toolbar = (Toolbar) findViewById(R.id.nav_toolbar);
+        nav_toolbar = findViewById(R.id.nav_toolbar);
         setSupportActionBar(nav_toolbar);
 
-        navigationView = (NavigationView)findViewById(R.id.nav_menu);
-        drawerLayout = (DrawerLayout)findViewById(R.id.Drawer_Layout);
+        navigationView = findViewById(R.id.nav_menu);
+        drawerLayout = findViewById(R.id.Drawer_Layout);
         drawerLayout.setFitsSystemWindows(true);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,main_toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void exitApp() {
         AlertDialog.Builder builder;
-        builder = new AlertDialog.Builder(MainActivity.this);
+        builder = new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogStyle);
 
         builder.setMessage("Do You Want To Close This App?")
 
