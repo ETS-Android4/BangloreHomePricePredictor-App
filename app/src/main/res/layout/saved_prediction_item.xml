@@ -18,101 +18,92 @@
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="100"
-            android:padding="8dp"
-            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="50"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="100"
+                android:padding="8dp"
+                android:baselineAligned="false">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:layout_margin="8dp"
-                    android:id="@+id/id_saved_prediction"
-                    android:fontFamily="sans-serif-condensed-medium"
-                    android:text="@string/id">
-                </TextView>
+                    android:layout_height="match_parent"
+                    android:layout_weight="50"
+                    android:orientation="vertical">
 
-                <TextView
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:layout_margin="8dp"
+                        android:id="@+id/sqft_saved_prediction"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:text="@string/sqft_area_saved">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:layout_margin="8dp"
+                        android:id="@+id/bhk_saved_prediction"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:text="@string/bhk_saved">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/black"
+                        android:layout_margin="8dp"
+                        android:id="@+id/location_saved_prediction"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:text="@string/location_saved">
+                    </TextView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:layout_margin="8dp"
-                    android:id="@+id/sqft_saved_prediction"
-                    android:fontFamily="sans-serif-condensed-medium"
-                    android:text="@string/sqft_area_saved">
+                    android:layout_height="match_parent"
+                    android:layout_weight="50"
+                    android:orientation="vertical">
 
-                </TextView>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:layout_margin="8dp"
-                    android:id="@+id/bhk_saved_prediction"
-                    android:fontFamily="sans-serif-condensed-medium"
-                    android:text="@string/bhk_saved">
 
-                </TextView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:layout_margin="8dp"
+                        android:id="@+id/bath_saved_prediction"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:text="@string/baths_saved">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:layout_margin="8dp"
+                        android:id="@+id/balcony_saved_prediction"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:text="@string/balconies_saved">
+
+                    </TextView>
+
+                </LinearLayout>
+
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="50"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:id="@+id/location_saved_prediction"
-                    android:fontFamily="sans-serif-condensed-medium"
-                    android:text="@string/location_saved">
-
-                </TextView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:id="@+id/bath_saved_prediction"
-                    android:fontFamily="sans-serif-condensed-medium"
-                    android:text="@string/baths_saved">
-
-                </TextView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:layout_margin="8dp"
-                    android:id="@+id/balcony_saved_prediction"
-                    android:fontFamily="sans-serif-condensed-medium"
-                    android:text="@string/balconies_saved">
-
-                </TextView>
-
-            </LinearLayout>
-
-
-        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
