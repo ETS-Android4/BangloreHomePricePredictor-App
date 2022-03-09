@@ -8,6 +8,7 @@ public class Prediction {
     private String balcony;
     private String location;
     private String price;
+    private String email;
 
     public Prediction(){
 
@@ -23,6 +24,14 @@ public class Prediction {
 
     public String getBhk() {
         return bhk;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setBhk(String bhk) {
