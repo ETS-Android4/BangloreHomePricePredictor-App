@@ -1,5 +1,7 @@
 package com.anjaniy.banglorehomepricepredictor.models;
 
+import java.util.UUID;
+
 public class Prediction {
 
     private String sqft;
@@ -9,6 +11,7 @@ public class Prediction {
     private String location;
     private String price;
     private String emailAddress;
+    private String uuid;
 
     public Prediction(){
 
@@ -28,6 +31,15 @@ public class Prediction {
 
     public String getEmailAddress() {
         return emailAddress;
+    }
+
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public void setEmailAddress(String emailAddress) {

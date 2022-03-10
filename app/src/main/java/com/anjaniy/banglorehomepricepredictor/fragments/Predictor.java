@@ -40,6 +40,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 public class Predictor extends Fragment {
 
@@ -266,10 +267,11 @@ public class Predictor extends Fragment {
                         prediction.setSqft(sqftSelected);
                         prediction.setBath(bathSelected);
                         prediction.setBhk(bhkSelected);
+                        prediction.setUuid(UUID.randomUUID().toString());
 
                         database
                                 .collection("Predictions")
-                                .document()
+                                .document(prediction.getUuid())
                                 .set(prediction).addOnSuccessListener(unused -> Toast.makeText(getActivity(), "Successfully Saved!", Toast.LENGTH_LONG).show())
                                 .addOnFailureListener(e -> Toast.makeText(getActivity(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show());
 

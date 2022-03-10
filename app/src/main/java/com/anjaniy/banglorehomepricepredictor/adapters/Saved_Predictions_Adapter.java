@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.anjaniy.banglorehomepricepredictor.R;
 import com.anjaniy.banglorehomepricepredictor.models.Prediction;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -65,7 +67,6 @@ public class Saved_Predictions_Adapter extends RecyclerView.Adapter{
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        Toast.makeText(context, "Deleted Temp", Toast.LENGTH_LONG).show();
 
                     }
                 });
