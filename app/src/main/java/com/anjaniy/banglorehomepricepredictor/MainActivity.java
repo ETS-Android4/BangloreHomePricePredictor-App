@@ -1,5 +1,6 @@
 package com.anjaniy.banglorehomepricepredictor;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,9 @@ import android.widget.Toast;
 import com.anjaniy.banglorehomepricepredictor.fragments.About_App;
 import com.anjaniy.banglorehomepricepredictor.fragments.Predictor;
 import com.anjaniy.banglorehomepricepredictor.fragments.Saved_Predictions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -122,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
                                         writeBatchUser.delete(snapshot.getReference());
                                     }
 
-                                    writeBatchUser.commit().addOnSuccessListener(unusedUsers -> Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).delete().addOnCompleteListener(taskUsers -> {
+
+                                    writeBatchUser.commit().addOnCompleteListener(taskUsers -> {
                                         if(taskUsers.isSuccessful()){
                                             FirebaseFirestore.getInstance().collection("Predictions")
                                                     .whereEqualTo("emailAddress", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).get().addOnSuccessListener(queryDocumentSnapshotsPredictions -> {
@@ -153,10 +158,8 @@ public class MainActivity extends AppCompatActivity {
                                             dismissDialog();
                                             Toast.makeText(MainActivity.this, Objects.requireNonNull(taskUsers.getException()).getLocalizedMessage(), Toast.LENGTH_LONG).show();
                                         }
-                                    })).addOnFailureListener(e -> {
-                                        dismissDialog();
-                                        Toast.makeText(MainActivity.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                                     });
+
                                 });
                             })
 
