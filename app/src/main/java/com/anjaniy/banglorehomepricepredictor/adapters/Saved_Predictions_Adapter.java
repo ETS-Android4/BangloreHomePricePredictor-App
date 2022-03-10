@@ -31,6 +31,7 @@ public class Saved_Predictions_Adapter extends RecyclerView.Adapter{
     private Context context;
     private ArrayList<Prediction> predictions;
     private LayoutInflater layoutInflater;
+    private ProgressDialog dialog;
 
     public Saved_Predictions_Adapter(Context context, ArrayList<Prediction> predictions){
 
@@ -71,22 +72,16 @@ public class Saved_Predictions_Adapter extends RecyclerView.Adapter{
                 alertDialog.setPositiveButton("Delete Prediction", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        showProgressDialog();
                         FirebaseFirestore.getInstance()
                                 .collection("Predictions")
                                 .document(predictions.get(position).getUuid())
                                 .delete()
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        removeItem(v,position);
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.e("Error",e.getLocalizedMessage());
-                            }
-                        });
+                                .addOnSuccessListener(unused -> removeItem(v,position))
+                                .addOnFailureListener(e -> {
+                                    Log.e("Error", e.getLocalizedMessage());
+                                    dismissDialog();
+                                });
 
                     }
                 });
@@ -132,6 +127,19 @@ public class Saved_Predictions_Adapter extends RecyclerView.Adapter{
         predictions.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, predictions.size());
-        Toast.makeText(context, "Delete Successfully", Toast.LENGTH_LONG).show();
+        dismissDialog();
+        Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_LONG).show();
+    }
+
+    private void showProgressDialog() {
+        dialog = new ProgressDialog(context);
+        dialog.show();
+        dialog.setContentView(R.layout.progress_dialog);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+    }
+
+    public void dismissDialog() {
+        dialog.dismiss();
     }
 }
