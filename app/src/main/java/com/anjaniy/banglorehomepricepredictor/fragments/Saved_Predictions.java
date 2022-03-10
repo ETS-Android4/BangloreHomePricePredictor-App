@@ -62,6 +62,7 @@ public class Saved_Predictions extends Fragment {
 
     @SuppressLint("NotifyDataSetChanged")
     public void proceed() {
+        predictions.clear();
         GetSavedPredictions();
         recyclerView.setLayoutManager (new LinearLayoutManager(getActivity()));
         adapter = new Saved_Predictions_Adapter(getActivity(),predictions);
@@ -77,9 +78,8 @@ public class Saved_Predictions extends Fragment {
 
         database
                 .collection("Predictions")
-                .whereEqualTo("email", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail())
+                .whereEqualTo("emailAddress", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail())
                 .addSnapshotListener((value, error) -> {
-                    predictions.clear();
                     assert value != null;
 
                     if(error != null){

@@ -259,7 +259,7 @@ public class Predictor extends Fragment {
                     .setPositiveButton("Save Prediction", (dialog, which) -> {
                         //ACTION FOR "YES" BUTTON: -
                         Prediction prediction = new Prediction();
-                        prediction.setEmail(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());
+                        prediction.setEmailAddress(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());
                         prediction.setPrice(Result + "Lakhs");
                         prediction.setLocation(locationSelected);
                         prediction.setBalcony(balconySelected);

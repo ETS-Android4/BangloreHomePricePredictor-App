@@ -112,24 +112,46 @@ public class MainActivity extends AppCompatActivity {
                                 //ACTION FOR "YES" BUTTON: -
                                 showProgressDialog();
                                 //ACTION FOR "YES" BUTTON: -
-                                FirebaseFirestore.getInstance().collection("Predictions")
-                                        .whereEqualTo("email", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).get().addOnSuccessListener(queryDocumentSnapshots -> {
-                                    WriteBatch writeBatch = FirebaseFirestore.getInstance().batch();
-                                    List<DocumentSnapshot> snapshots = queryDocumentSnapshots.getDocuments();
 
-                                    for(DocumentSnapshot snapshot: snapshots){
-                                        writeBatch.delete(snapshot.getReference());
+                                FirebaseFirestore.getInstance().collection("Users")
+                                        .whereEqualTo("emailAddress", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).get().addOnSuccessListener(queryDocumentSnapshotsUsers -> {
+                                    WriteBatch writeBatchUser = FirebaseFirestore.getInstance().batch();
+                                    List<DocumentSnapshot> snapshotsUsers = queryDocumentSnapshotsUsers.getDocuments();
+
+                                    for(DocumentSnapshot snapshot: snapshotsUsers){
+                                        writeBatchUser.delete(snapshot.getReference());
                                     }
 
-                                    writeBatch.commit().addOnSuccessListener(unused -> Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).delete().addOnCompleteListener(task -> {
-                                        if(task.isSuccessful()){
-                                            Toast.makeText(MainActivity.this, "Account has been deleted successfully", Toast.LENGTH_LONG).show();
-                                            startActivity(new Intent(MainActivity.this, SplashScreen.class));
-                                            dismissDialog();
+                                    writeBatchUser.commit().addOnSuccessListener(unusedUsers -> Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).delete().addOnCompleteListener(taskUsers -> {
+                                        if(taskUsers.isSuccessful()){
+                                            FirebaseFirestore.getInstance().collection("Predictions")
+                                                    .whereEqualTo("emailAddress", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).get().addOnSuccessListener(queryDocumentSnapshotsPredictions -> {
+                                                WriteBatch writeBatchPredictions = FirebaseFirestore.getInstance().batch();
+                                                List<DocumentSnapshot> snapshotsPredictions = queryDocumentSnapshotsPredictions.getDocuments();
+
+                                                for(DocumentSnapshot snapshot: snapshotsPredictions){
+                                                    writeBatchPredictions.delete(snapshot.getReference());
+                                                }
+
+                                                writeBatchPredictions.commit().addOnSuccessListener(unusedPredictions -> Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).delete().addOnCompleteListener(taskPredictions -> {
+                                                    if(taskPredictions.isSuccessful()){
+                                                        Toast.makeText(MainActivity.this, "Account has been deleted successfully", Toast.LENGTH_LONG).show();
+                                                        startActivity(new Intent(MainActivity.this, SplashScreen.class));
+                                                        dismissDialog();
+                                                    }
+                                                    else{
+                                                        dismissDialog();
+                                                        Toast.makeText(MainActivity.this, Objects.requireNonNull(taskPredictions.getException()).getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                                                    }
+                                                })).addOnFailureListener(e -> {
+                                                    dismissDialog();
+                                                    Toast.makeText(MainActivity.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                                                });
+                                            });
                                         }
                                         else{
                                             dismissDialog();
-                                            Toast.makeText(MainActivity.this, Objects.requireNonNull(task.getException()).getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                                            Toast.makeText(MainActivity.this, Objects.requireNonNull(taskUsers.getException()).getLocalizedMessage(), Toast.LENGTH_LONG).show();
                                         }
                                     })).addOnFailureListener(e -> {
                                         dismissDialog();
