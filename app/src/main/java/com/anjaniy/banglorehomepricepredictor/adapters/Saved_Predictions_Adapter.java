@@ -3,12 +3,15 @@ package com.anjaniy.banglorehomepricepredictor.adapters;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.anjaniy.banglorehomepricepredictor.R;
@@ -39,7 +42,7 @@ public class Saved_Predictions_Adapter extends RecyclerView.Adapter{
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         final ViewHolder viewHolder = (ViewHolder)holder;
 
@@ -48,6 +51,39 @@ public class Saved_Predictions_Adapter extends RecyclerView.Adapter{
         viewHolder.bath.setText("Baths: " + predictions.get(position).getBath());
         viewHolder.balcony.setText("Balcony: " + predictions.get(position).getBalcony());
         viewHolder.location.setText("Location: " + predictions.get(position).getLocation());
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //pass the 'context' here
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(context, R.style.AlertDialogStyle);
+                alertDialog.setTitle("Estimated Price");
+                alertDialog.setMessage(predictions.get(position).getPrice() + " " + " Lakhs");
+
+                alertDialog.setPositiveButton("Delete Prediction", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Toast.makeText(context, "Deleted Temp", Toast.LENGTH_LONG).show();
+
+                    }
+                });
+                alertDialog.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        // DO SOMETHING HERE
+                        dialog.cancel();
+
+                    }
+                });
+
+                AlertDialog dialog = alertDialog.create();
+                dialog.show();
+
+            }
+        });
     }
 
     @Override
