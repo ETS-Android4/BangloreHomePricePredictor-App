@@ -1,9 +1,12 @@
 package com.anjaniy.banglorehomepricepredictor.adapters;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.anjaniy.banglorehomepricepredictor.R;
 import com.anjaniy.banglorehomepricepredictor.models.Prediction;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -67,6 +72,21 @@ public class Saved_Predictions_Adapter extends RecyclerView.Adapter{
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
+                        FirebaseFirestore.getInstance()
+                                .collection("Predictions")
+                                .document(predictions.get(position).getUuid())
+                                .delete()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        removeItem(v,position);
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.e("Error",e.getLocalizedMessage());
+                            }
+                        });
 
                     }
                 });
@@ -105,5 +125,13 @@ public class Saved_Predictions_Adapter extends RecyclerView.Adapter{
             balcony = (TextView)itemView.findViewById(R.id.balcony_saved_prediction);
             location = (TextView)itemView.findViewById(R.id.location_saved_prediction);
         }
+    }
+
+    private void removeItem(View view,int position) {
+
+        predictions.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, predictions.size());
+        Toast.makeText(context, "Delete Successfully", Toast.LENGTH_LONG).show();
     }
 }
