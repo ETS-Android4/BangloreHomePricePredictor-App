@@ -18,7 +18,11 @@ import com.anjaniy.banglorehomepricepredictor.fragments.Predictor;
 import com.anjaniy.banglorehomepricepredictor.fragments.Saved_Predictions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.WriteBatch;
 
+import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -96,7 +100,56 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.delete_account:
-                    Toast.makeText(MainActivity.this, "Account has been deleted successfully", Toast.LENGTH_LONG).show();
+                    AlertDialog.Builder builder_deleteAccount;
+                    builder_deleteAccount = new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogStyle);
+
+                    builder_deleteAccount.setMessage("Do you want to delete this account?")
+
+                            .setCancelable(false)
+
+                            //CODE FOR POSITIVE(YES) BUTTON: -
+                            .setPositiveButton("Yes", (dialog, which) -> {
+                                //ACTION FOR "YES" BUTTON: -
+                                showProgressDialog();
+                                //ACTION FOR "YES" BUTTON: -
+                                FirebaseFirestore.getInstance().collection("Predictions")
+                                        .whereEqualTo("email", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).get().addOnSuccessListener(queryDocumentSnapshots -> {
+                                    WriteBatch writeBatch = FirebaseFirestore.getInstance().batch();
+                                    List<DocumentSnapshot> snapshots = queryDocumentSnapshots.getDocuments();
+
+                                    for(DocumentSnapshot snapshot: snapshots){
+                                        writeBatch.delete(snapshot.getReference());
+                                    }
+
+                                    writeBatch.commit().addOnSuccessListener(unused -> Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).delete().addOnCompleteListener(task -> {
+                                        if(task.isSuccessful()){
+                                            Toast.makeText(MainActivity.this, "Account has been deleted successfully", Toast.LENGTH_LONG).show();
+                                            startActivity(new Intent(MainActivity.this, SplashScreen.class));
+                                            dismissDialog();
+                                        }
+                                        else{
+                                            dismissDialog();
+                                            Toast.makeText(MainActivity.this, Objects.requireNonNull(task.getException()).getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                                        }
+                                    })).addOnFailureListener(e -> {
+                                        dismissDialog();
+                                        Toast.makeText(MainActivity.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                                    });
+                                });
+                            })
+
+                            //CODE FOR NEGATIVE(NO) BUTTON: -
+                            .setNegativeButton("No", (dialog, which) -> {
+                                //ACTION FOR "NO" BUTTON: -
+                                dialog.cancel();
+
+                            });
+
+                    //CREATING A DIALOG-BOX: -
+                    AlertDialog alertDialog_deleteAccount = builder_deleteAccount.create();
+                    //SET TITLE MAUALLY: -
+                    alertDialog_deleteAccount.setTitle("Delete Account");
+                    alertDialog_deleteAccount.show();
                     break;
 
                 case R.id.forgot_password:
@@ -131,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
                     //CREATING A DIALOG-BOX: -
                     AlertDialog alertDialog_changePassword = builder_changePassword.create();
                     //SET TITLE MAUALLY: -
-                    alertDialog_changePassword.setTitle("Forgot password");
+                    alertDialog_changePassword.setTitle("Forgot Password");
                     alertDialog_changePassword.show();
                     break;
 

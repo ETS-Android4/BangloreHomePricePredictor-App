@@ -33,6 +33,7 @@
     <string name="createAccountButton">Create An Account</string>
     <string name="signupbutton">Create An Account</string>
     <string name="alreadyAccountButton">Already Have An Account ?</string>
+    <string name="signout_option">Sign Out</string>
 
     <string-array name="bhk_array">
         <item>1</item>
