@@ -44,18 +44,17 @@ public class Saved_Predictions extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = (inflater.inflate(R.layout.fragment_saved_predictions,container,false));
-        showProgressDialog();
-
-        swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.refresh_layout);
-        recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view_saved_predictions);
-        recyclerView.setHasFixedSize(true);
-        predictions = new ArrayList<>();
-        proceed();
-
-        swipeRefreshLayout.setOnRefreshListener (() -> {
+            showProgressDialog();
+            swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.refresh_layout);
+            recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view_saved_predictions);
+            recyclerView.setHasFixedSize(true);
+            predictions = new ArrayList<>();
             proceed();
-            swipeRefreshLayout.setRefreshing(false);
-        });
+
+            swipeRefreshLayout.setOnRefreshListener (() -> {
+                proceed();
+                swipeRefreshLayout.setRefreshing(false);
+            });
 
         return view;
     }
