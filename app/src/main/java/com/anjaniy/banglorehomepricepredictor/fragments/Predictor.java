@@ -270,7 +270,7 @@ public class Predictor extends Fragment {
                         database
                                 .collection("Predictions")
                                 .document(prediction.getUuid())
-                                .set(prediction).addOnSuccessListener(unused -> Toast.makeText(getActivity(), "Successfully Saved!", Toast.LENGTH_LONG).show())
+                                .set(prediction).addOnSuccessListener(unused -> Toast.makeText(getActivity(), "Successfully Saved!", Toast.LENGTH_SHORT).show())
                                 .addOnFailureListener(e -> Toast.makeText(getActivity(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show());
 
                     })

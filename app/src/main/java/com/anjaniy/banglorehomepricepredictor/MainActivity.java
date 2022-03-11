@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                                 showProgressDialog();
                                 //ACTION FOR "YES" BUTTON: -
                                 FirebaseAuth.getInstance().signOut();
-                                Toast.makeText(MainActivity.this, "Sign out has been successfully", Toast.LENGTH_LONG).show();
+                                Toast.makeText(MainActivity.this, "Sign out has been successfully", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                                 dismissDialog();
                             })
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
                                                 writeBatchPredictions.commit().addOnSuccessListener(unusedPredictions -> Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).delete().addOnCompleteListener(taskPredictions -> {
                                                     if(taskPredictions.isSuccessful()){
-                                                        Toast.makeText(MainActivity.this, "Account has been deleted successfully", Toast.LENGTH_LONG).show();
+                                                        Toast.makeText(MainActivity.this, "Account has been deleted successfully", Toast.LENGTH_SHORT).show();
                                                         startActivity(new Intent(MainActivity.this, SplashScreen.class));
                                                         dismissDialog();
                                                     }
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
                                 //ACTION FOR "YES" BUTTON: -
                                 FirebaseAuth.getInstance().sendPasswordResetEmail(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail())).addOnSuccessListener(unused -> {
                                     dismissDialog();
-                                    Toast.makeText(MainActivity.this, "Password reset link has been sent to your email.", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(MainActivity.this, "Password reset link has been sent to your email.", Toast.LENGTH_SHORT).show();
                                 }).addOnFailureListener(e -> {
                                     dismissDialog();
                                     Toast.makeText(MainActivity.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();

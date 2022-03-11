@@ -30,7 +30,7 @@ public class About_App extends Fragment {
                 .setDescription(getString(R.string.about_app))
                 .addItem(versionElement)
                 .addEmail("anjaniy01salekar@gmail.com")
-                .addPlayStore("com.ideashower.readitlater.pro")
+//                .addPlayStore("com.ideashower.readitlater.pro")
                 .addGitHub("Anjaniy2000/BangloreHomePricePredictor-App")
                 .create();
     }

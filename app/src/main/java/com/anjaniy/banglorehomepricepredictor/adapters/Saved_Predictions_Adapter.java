@@ -123,7 +123,7 @@ public class Saved_Predictions_Adapter extends RecyclerView.Adapter{
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, predictions.size());
         dismissDialog();
-        Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT).show();
     }
 
     private void showProgressDialog() {

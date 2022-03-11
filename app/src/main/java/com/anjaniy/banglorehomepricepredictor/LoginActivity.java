@@ -1,12 +1,12 @@
 package com.anjaniy.banglorehomepricepredictor;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.anjaniy.banglorehomepricepredictor.databinding.ActivityLoginBinding;
 import com.google.firebase.auth.FirebaseAuth;
