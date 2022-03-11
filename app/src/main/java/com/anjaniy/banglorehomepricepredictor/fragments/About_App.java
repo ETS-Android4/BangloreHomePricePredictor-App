@@ -26,7 +26,7 @@ public class About_App extends Fragment {
 
         return new AboutPage(getActivity())
                 .isRTL(false)
-                .setImage(R.drawable.about_app_logo)
+                .setImage(R.mipmap.logo)
                 .setDescription(getString(R.string.about_app))
                 .addItem(versionElement)
                 .addEmail("anjaniy01salekar@gmail.com")

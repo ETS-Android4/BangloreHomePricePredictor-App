@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BangloreHomePricePredictor</string>
+    <string name="app_name">Bangalore Home Price Predictor</string>
     <string name="home_option">Home</string>
     <string name="predictor_option">Predictor</string>
     <string name="saved_predictions_option">Saved Predictions</string>
