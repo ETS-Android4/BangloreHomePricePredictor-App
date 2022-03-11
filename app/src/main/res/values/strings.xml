@@ -34,6 +34,7 @@
     <string name="signupbutton">Create An Account</string>
     <string name="alreadyAccountButton">Already Have An Account ?</string>
     <string name="signout_option">Sign Out</string>
+    <string name="loading_locations">Locations.....</string>
 
     <string-array name="bhk_array">
         <item>1</item>

@@ -1,7 +1,5 @@
 package com.anjaniy.banglorehomepricepredictor.adapters;
 
-import static android.content.ContentValues.TAG;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -19,9 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.anjaniy.banglorehomepricepredictor.R;
 import com.anjaniy.banglorehomepricepredictor.models.Prediction;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -134,7 +129,7 @@ public class Saved_Predictions_Adapter extends RecyclerView.Adapter{
     private void showProgressDialog() {
         dialog = new ProgressDialog(context);
         dialog.show();
-        dialog.setContentView(R.layout.progress_dialog);
+        dialog.setContentView(R.layout.progress_dialog_main);
         dialog.setCanceledOnTouchOutside(false);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     }

@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import com.anjaniy.banglorehomepricepredictor.databinding.ActivityLoginBinding;
@@ -63,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
     private void showProgressDialog() {
         dialog = new ProgressDialog(LoginActivity.this);
         dialog.show();
-        dialog.setContentView(R.layout.progress_dialog);
+        dialog.setContentView(R.layout.progress_dialog_main);
         dialog.setCanceledOnTouchOutside(false);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     }

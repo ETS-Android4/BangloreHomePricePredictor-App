@@ -5,11 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
-import com.anjaniy.banglorehomepricepredictor.databinding.ActivityLoginBinding;
 import com.anjaniy.banglorehomepricepredictor.databinding.ActivitySignupBinding;
 import com.anjaniy.banglorehomepricepredictor.models.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -78,7 +75,7 @@ public class SignupActivity extends AppCompatActivity {
     private void showProgressDialog() {
         dialog = new ProgressDialog(SignupActivity.this);
         dialog.show();
-        dialog.setContentView(R.layout.progress_dialog);
+        dialog.setContentView(R.layout.progress_dialog_main);
         dialog.setCanceledOnTouchOutside(false);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     }

@@ -1,7 +1,6 @@
 package com.anjaniy.banglorehomepricepredictor.fragments;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,15 +20,11 @@ import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.anjaniy.banglorehomepricepredictor.R;
 import com.anjaniy.banglorehomepricepredictor.models.Prediction;
 import com.anjaniy.banglorehomepricepredictor.singleton.MySingleTon;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -176,6 +171,8 @@ public class Predictor extends Fragment {
 
     private void getLocations() {
 
+        showProgressDialog();
+
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, LOCATIONS_URL, null, response -> {
 
             try {
@@ -188,6 +185,7 @@ public class Predictor extends Fragment {
                     ArrayAdapter<String> spinnerArrayAdapter_LOCATIONS = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, LOCATION_Names);
                     spinnerArrayAdapter_LOCATIONS.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
                     locations.setAdapter(spinnerArrayAdapter_LOCATIONS);
+                    dismissDialog();
                 }
 
             } catch (JSONException e) {
@@ -231,7 +229,7 @@ public class Predictor extends Fragment {
     private void showProgressDialog() {
         dialog = new ProgressDialog(getActivity());
         dialog.show();
-        dialog.setContentView(R.layout.progress_dialog);
+        dialog.setContentView(R.layout.progress_dialog_main);
         dialog.setCanceledOnTouchOutside(false);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     }

@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,15 +18,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.anjaniy.banglorehomepricepredictor.R;
 import com.anjaniy.banglorehomepricepredictor.adapters.Saved_Predictions_Adapter;
 import com.anjaniy.banglorehomepricepredictor.models.Prediction;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -103,7 +96,7 @@ public class Saved_Predictions extends Fragment {
 
     private void showProgressDialog() {
         dialog = new ProgressDialog(getActivity());
-        dialog.setContentView(R.layout.progress_dialog);
+        dialog.setContentView(R.layout.progress_dialog_main);
         dialog.setCanceledOnTouchOutside(false);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.show();
