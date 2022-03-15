@@ -75,7 +75,7 @@ public class SignupActivity extends AppCompatActivity {
     private void showProgressDialog() {
         dialog = new ProgressDialog(SignupActivity.this);
         dialog.show();
-        dialog.setContentView(R.layout.progress_dialog_main);
+        dialog.setContentView(R.layout.progress_dialog_locations);
         dialog.setCanceledOnTouchOutside(false);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     }

@@ -36,6 +36,7 @@
     <string name="signout_option">Sign Out</string>
     <string name="loading_locations">Locations.....</string>
     <string name="no_data_available">No Data Available!</string>
+    <string name="predicting_result">Predicting Prices.....</string>
 
     <string-array name="bhk_array">
         <item>1</item>

@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -111,7 +110,7 @@ public class Saved_Predictions extends Fragment {
 
     private void showProgressDialog() {
         dialog = new ProgressDialog(getActivity());
-        dialog.setContentView(R.layout.progress_dialog_main);
+        dialog.setContentView(R.layout.progress_dialog_locations);
         dialog.setCanceledOnTouchOutside(false);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.show();

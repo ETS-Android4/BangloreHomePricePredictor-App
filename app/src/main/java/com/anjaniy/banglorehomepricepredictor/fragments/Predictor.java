@@ -58,7 +58,8 @@ public class Predictor extends Fragment {
     private String locationSelected = "";
 
     private View view;
-    private ProgressDialog dialog;
+    private ProgressDialog dialogLocations;
+    private ProgressDialog dialogPrediction;
 
     private String Result = "";
 
@@ -133,13 +134,13 @@ public class Predictor extends Fragment {
         });
 
         estimatePrice.setOnClickListener(v -> {
-            showProgressDialog();
+            showProgressDialogPrediction();
             sqftSelected = sqft.getText().toString().trim();
 
             if(sqftSelected.isEmpty()){
                 sqft.setError("Square Foot Area Is Required!");
                 sqft.requestFocus();
-                dismissDialog();
+                dismissDialogPrediction();
                 return;
             }
 
@@ -171,7 +172,7 @@ public class Predictor extends Fragment {
 
     private void getLocations() {
 
-        showProgressDialog();
+        showProgressDialogLocations();
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, LOCATIONS_URL, null, response -> {
 
@@ -185,7 +186,7 @@ public class Predictor extends Fragment {
                     ArrayAdapter<String> spinnerArrayAdapter_LOCATIONS = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, LOCATION_Names);
                     spinnerArrayAdapter_LOCATIONS.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
                     locations.setAdapter(spinnerArrayAdapter_LOCATIONS);
-                    dismissDialog();
+                    dismissDialogLocations();
                 }
 
             } catch (JSONException e) {
@@ -226,16 +227,28 @@ public class Predictor extends Fragment {
         database = FirebaseFirestore.getInstance();
     }
 
-    private void showProgressDialog() {
-        dialog = new ProgressDialog(getActivity());
-        dialog.show();
-        dialog.setContentView(R.layout.progress_dialog_main);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+    private void showProgressDialogLocations() {
+        dialogLocations = new ProgressDialog(getActivity());
+        dialogLocations.show();
+        dialogLocations.setContentView(R.layout.progress_dialog_locations);
+        dialogLocations.setCanceledOnTouchOutside(false);
+        dialogLocations.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     }
 
-    public void dismissDialog() {
-        dialog.dismiss();
+    public void dismissDialogLocations() {
+        dialogLocations.dismiss();
+    }
+
+    private void showProgressDialogPrediction() {
+        dialogPrediction = new ProgressDialog(getActivity());
+        dialogPrediction.show();
+        dialogPrediction.setContentView(R.layout.progress_dialog_prediction);
+        dialogPrediction.setCanceledOnTouchOutside(false);
+        dialogPrediction.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+    }
+
+    public void dismissDialogPrediction() {
+        dialogPrediction.dismiss();
     }
 
     private void parseResponse(String response){
@@ -245,7 +258,7 @@ public class Predictor extends Fragment {
 
             Result = jsonObject.getString("estimated_price");
 
-            dismissDialog();
+            dismissDialogPrediction();
 
             AlertDialog.Builder builder;
             builder = new AlertDialog.Builder(requireActivity(), R.style.AlertDialogStyle);

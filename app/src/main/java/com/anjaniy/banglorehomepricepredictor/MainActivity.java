@@ -274,7 +274,7 @@ public class MainActivity extends AppCompatActivity {
     private void showProgressDialog() {
         dialog = new ProgressDialog(MainActivity.this);
         dialog.show();
-        dialog.setContentView(R.layout.progress_dialog_main);
+        dialog.setContentView(R.layout.progress_dialog_locations);
         dialog.setCanceledOnTouchOutside(false);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     }

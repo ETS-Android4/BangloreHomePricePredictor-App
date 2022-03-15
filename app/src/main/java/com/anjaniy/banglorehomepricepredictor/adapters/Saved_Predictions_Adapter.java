@@ -16,7 +16,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.anjaniy.banglorehomepricepredictor.R;
-import com.anjaniy.banglorehomepricepredictor.fragments.Saved_Predictions;
 import com.anjaniy.banglorehomepricepredictor.models.Prediction;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -130,7 +129,7 @@ public class Saved_Predictions_Adapter extends RecyclerView.Adapter{
     private void showProgressDialog() {
         dialog = new ProgressDialog(context);
         dialog.show();
-        dialog.setContentView(R.layout.progress_dialog_main);
+        dialog.setContentView(R.layout.progress_dialog_locations);
         dialog.setCanceledOnTouchOutside(false);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     }
