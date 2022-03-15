@@ -15,6 +15,12 @@
 ![Screenshot](/screenshots/login_1.png)
 ![Screenshot](/screenshots/login_2.png)
 
-<h3>Main Activity(With Navigation Drawer): </h3>
+<h3>Main Activity(With Navigation Drawer + Fragments): </h3>
 
 ![Screenshot](/screenshots/main.png)
+
+<h3>Predictor Fragment: </h3>
+
+![Screenshot](/screenshots/predictor_1.png)
+![Screenshot](/screenshots/predictor_2.png)
+![Screenshot](/screenshots/predictor_3.png)
