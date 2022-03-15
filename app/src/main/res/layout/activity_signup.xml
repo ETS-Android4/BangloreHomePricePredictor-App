@@ -7,96 +7,90 @@
     android:background="@color/primary_first"
     tools:context=".SignupActivity">
 
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="64dp"
+            app:cardCornerRadius="36dp"
+            app:cardElevation="4dp">
 
-            <androidx.cardview.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                app:cardElevation="4dp"
-                app:cardCornerRadius="36dp"
-                android:layout_marginTop="64dp"
-                android:layout_marginBottom="64dp">
-                <LinearLayout
+                android:layout_margin="8dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView3"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:srcCompat="@mipmap/logo" />
+
+                <EditText
+                    android:id="@+id/emailForSignup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:orientation="vertical">
+                    android:background="@drawable/textbox"
+                    android:drawableStart="@drawable/email_drawable"
+                    android:drawablePadding="16dp"
+                    android:ems="10"
+                    android:hint="@string/emailHint"
+                    android:inputType="textEmailAddress"
+                    android:minHeight="48dp"
+                    android:padding="8dp" />
 
-                    <ImageView
-                        android:id="@+id/imageView3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        app:srcCompat="@mipmap/logo" />
+                <EditText
+                    android:id="@+id/passwordForSignup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/textbox"
+                    android:drawableStart="@drawable/password_drawable"
+                    android:drawablePadding="16dp"
+                    android:ems="10"
+                    android:hint="@string/passwordHint"
+                    android:inputType="textPassword"
+                    android:minHeight="48dp"
+                    android:padding="8dp" />
 
-                    <EditText
-                        android:id="@+id/emailForSignup"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:background="@drawable/textbox"
-                        android:drawableStart="@drawable/email_drawable"
-                        android:drawablePadding="16dp"
-                        android:ems="10"
-                        android:hint="@string/emailHint"
-                        android:inputType="textEmailAddress"
-                        android:minHeight="48dp"
-                        android:padding="8dp" />
+                <Button
+                    android:id="@+id/signupbutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/button_style"
+                    android:text="@string/signupbutton"
+                    android:textColor="@color/white"></Button>
 
-                    <EditText
-                        android:id="@+id/passwordForSignup"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:background="@drawable/textbox"
-                        android:drawableStart="@drawable/password_drawable"
-                        android:drawablePadding="16dp"
-                        android:ems="10"
-                        android:hint="@string/passwordHint"
-                        android:inputType="textPassword"
-                        android:minHeight="48dp"
-                        android:padding="8dp" />
-
-                    <Button
-                        android:id="@+id/signupbutton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:background="@drawable/button_style"
-                        android:text="@string/signupbutton"
-                        android:textColor="@color/white">
-                    </Button>
-
-                    <Button
-                        android:id="@+id/alreadyAccountButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:background="@drawable/button_style_2"
-                        android:text="@string/alreadyAccountButton"
-                        android:textColor="@color/white" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-    </ScrollView>
+                <Button
+                    android:id="@+id/alreadyAccountButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/button_style_2"
+                    android:text="@string/alreadyAccountButton"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
