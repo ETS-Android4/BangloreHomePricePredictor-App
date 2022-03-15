@@ -39,6 +39,12 @@
 ![Screenshot](/screenshots/saved_predictions_1.png)
 ![Screenshot](/screenshots/saved_predictions_2.png)
 
+<h3>Profile Modification Features: </h3>
+
+![Screenshot](/screenshots/profile_1.png)
+![Screenshot](/screenshots/profile_2.png)
+![Screenshot](/screenshots/profile_3.png)
+
 <h3>About App Fragment: </h3>
 
 ![Screenshot](/screenshots/about_app.png)
