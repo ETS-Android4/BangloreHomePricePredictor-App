@@ -21,9 +21,13 @@
 
 <h3>Predictor Fragment: </h3>
 
+<h4>Locations: </h4>
 ![Screenshot](/screenshots/predictor_1.png)
+
+<h4>Predictions: </h4>
 ![Screenshot](/screenshots/predictor_2.png)
 ![Screenshot](/screenshots/predictor_3.png)
 ![Screenshot](/screenshots/predictor_4.png)
 ![Screenshot](/screenshots/predictor_5.png)
 ![Screenshot](/screenshots/predictor_6.png)
+![Screenshot](/screenshots/predictor_7.png)
