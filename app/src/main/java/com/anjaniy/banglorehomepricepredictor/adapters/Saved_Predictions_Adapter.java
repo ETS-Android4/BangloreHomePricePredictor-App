@@ -16,6 +16,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.anjaniy.banglorehomepricepredictor.R;
+import com.anjaniy.banglorehomepricepredictor.fragments.Saved_Predictions;
 import com.anjaniy.banglorehomepricepredictor.models.Prediction;
 import com.google.firebase.firestore.FirebaseFirestore;
 
