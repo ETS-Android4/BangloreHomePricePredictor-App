@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,16 +34,19 @@ public class Saved_Predictions extends Fragment {
     private Saved_Predictions_Adapter adapter;
     private ProgressDialog dialog;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private View view;
+    private TextView textView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = (inflater.inflate(R.layout.fragment_saved_predictions,container,false));
+        view = (inflater.inflate(R.layout.fragment_saved_predictions,container,false));
             showProgressDialog();
             swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.refresh_layout);
             recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view_saved_predictions);
             recyclerView.setHasFixedSize(true);
             predictions = new ArrayList<>();
+            textView = view.findViewById(R.id.textView);
             proceed();
 
             swipeRefreshLayout.setOnRefreshListener (() -> {
@@ -54,7 +59,6 @@ public class Saved_Predictions extends Fragment {
 
     @SuppressLint("NotifyDataSetChanged")
     public void proceed() {
-        predictions.clear();
         GetSavedPredictions();
         recyclerView.setLayoutManager (new LinearLayoutManager(getActivity()));
         adapter = new Saved_Predictions_Adapter(getActivity(),predictions);
@@ -65,6 +69,8 @@ public class Saved_Predictions extends Fragment {
 
     @SuppressLint("NotifyDataSetChanged")
     public void GetSavedPredictions(){
+
+        predictions.clear();
 
         FirebaseFirestore database = FirebaseFirestore.getInstance();
 
@@ -90,6 +96,12 @@ public class Saved_Predictions extends Fragment {
                         if(dialog.isShowing()){
                             dismissDialog();
                         }
+                    }
+
+                    if(predictions.isEmpty()){
+                        textView.setVisibility(View.VISIBLE);
+//                        Toast.makeText(getActivity(), "EMPTY", Toast.LENGTH_LONG).show();
+                        dismissDialog();
                     }
                 });
     }
