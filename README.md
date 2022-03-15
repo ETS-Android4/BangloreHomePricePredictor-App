@@ -39,3 +39,6 @@
 ![Screenshot](/screenshots/saved_predictions_1.png)
 ![Screenshot](/screenshots/saved_predictions_2.png)
 
+<h3>About App Fragment: </h3>
+
+![Screenshot](/screenshots/about_app.png)
