@@ -5,3 +5,7 @@
 
 ![Screenshot](/screenshots/splash_screen.png)
 
+<h3>Create New Account: </h3>
+
+![Screenshot](/screenshots/register.png)
+![Screenshot](/screenshots/register_2.png)
