@@ -24,3 +24,6 @@
 ![Screenshot](/screenshots/predictor_1.png)
 ![Screenshot](/screenshots/predictor_2.png)
 ![Screenshot](/screenshots/predictor_3.png)
+![Screenshot](/screenshots/predictor_4.png)
+![Screenshot](/screenshots/predictor_5.png)
+![Screenshot](/screenshots/predictor_6.png)
