@@ -33,3 +33,9 @@
 ![Screenshot](/screenshots/predictor_5.png)
 ![Screenshot](/screenshots/predictor_6.png)
 ![Screenshot](/screenshots/predictor_7.png)
+
+<h3>Saved Predictions Fragment: </h3>
+
+![Screenshot](/screenshots/saved_predictions_1.png)
+![Screenshot](/screenshots/saved_predictions_2.png)
+
