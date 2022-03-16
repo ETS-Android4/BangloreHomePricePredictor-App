@@ -11,7 +11,7 @@
     <string name="open">open</string>
     <string name="close">open</string>
     <string name="loading_dialog">Loading.....</string>
-    <string name="about_app">Bangalore Home Price Predictor Is A Machine Learning Model, Which Predicts The Housing Prices Based On Location, Size, No.of Baths and Balconies, and Square-Foot-Area.
+    <string name="about_app">Bangalore Home Price Predictor Is An Android Application, Which Used The Machine Learning Model To Predicts The Bangalore Home Prices Based On Location, BHKs, Bathrooms, Balconies &amp; Square-foot-area.
 
     </string>
     <string name="square_foot_area">Square Foot Area:</string>
