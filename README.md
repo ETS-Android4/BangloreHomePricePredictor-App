@@ -1,5 +1,7 @@
 # Bangalore Home Price Predictor
 <h2>Bangalore Home Price Predictor Is An Android Application, Which Used The Machine Learning Model To Predicts The Bangalore Home Prices Based On Location, BHKs, Bathrooms, Balconies & Square-foot-area.</h2>
+ 
+<h2>Playstore Link: https://play.google.com/store/apps/details?id=com.anjaniy.banglorehomepricepredictor</h2>
 
 <h2>Working Demonstration Link: https://youtu.be/C0tKbRCxSN0</h2>
 
